@@ -1,1 +1,15 @@
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\app\Main.java
 C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\config\MongoClientProvider.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\config\MongoConfig.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\dao\ICursoDAO.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\dao\IEstudianteDAO.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\dao\IModeloDAO.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\dao\imp\CourseDAOImpl.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\exception\DaoException.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\exception\EntityNotFoundException.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\model\Curso.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\model\Estudiante.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\model\Instructor.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\model\Modulo.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\model\Recurso.java
+C:\Users\Ricardo\Documents\NetBeansProjects\LearnUp\src\main\java\model\Resena.java

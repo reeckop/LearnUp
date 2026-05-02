@@ -1,44 +1,58 @@
 package config;
 
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 /**
  *
  * @author Ricardo
  */
-public enum MongoClientProvider {
-    INSTANCE;
+public class MongoClientProvider {
+    private static MongoClientProvider instance;
+    private final MongoClient mongoClient;
+    private final MongoDatabase database;
 
-    private MongoClient client;
-    private String dbName = "UsuariosDB";
-    private String uri = "tu-url-de-conexion";
-    
-    public synchronized void init() {
-        if (client == null) {
-            client = MongoClients.create(MongoConfig.buildSettings(this.uri));
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                try { client.close(); } catch (Exception ignored) {}
-            }));
+    private MongoClientProvider() {
+        CodecRegistry pojoCodecRegistry = fromRegistries(
+                MongoClientSettings.getDefaultCodecRegistry(),
+                fromProviders(PojoCodecProvider.builder().automatic(true).build())
+        );
+
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .applyConnectionString(new ConnectionString("mongodb://localhost:27017")) 
+                .codecRegistry(pojoCodecRegistry)
+                .build();
+
+        this.mongoClient = MongoClients.create(settings);
+        this.database = this.mongoClient.getDatabase("LearnUp");
+    }
+
+    public static synchronized MongoClientProvider getInstance() {
+        if (instance == null) {
+            instance = new MongoClientProvider();
         }
+        return instance;
     }
 
-    public MongoClient client() {
-        if (client == null) throw new IllegalStateException("MongoClientProvider no inicializado. Llama a init(uri) antes.");
-        return client;
+    public MongoDatabase getDatabase() {
+        return database;
     }
 
-    public MongoDatabase database() {
-        return client().getDatabase(this.dbName);
+    public <T> MongoCollection<T> getCollection(String collectionName, Class<T> clazz) {
+        return database.getCollection(collectionName, clazz);
     }
     
-    public <T> MongoCollection<T> getCollection(String collectionName, Class<T> clazz) {
-        if (client == null)
-            throw new IllegalStateException("MongoClientProvider no inicializado. Llama a init(uri) antes.");
-
-        MongoDatabase db = client.getDatabase(this.dbName);
-        return db.getCollection(collectionName, clazz);
+    public void close() {
+        if (mongoClient != null) {
+            mongoClient.close();
+        }
     }
 }

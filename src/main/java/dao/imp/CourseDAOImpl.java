@@ -1,45 +1,81 @@
 package dao.imp;
 
-import com.mongodb.client.MongoCollection;
 import config.MongoClientProvider;
+import dao.ICursoDAO;
 import model.Curso;
+import exception.DaoException;
+import exception.EntityNotFoundException;
+import com.mongodb.client.MongoCollection;
 import org.bson.types.ObjectId;
+import static com.mongodb.client.model.Filters.eq;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import java.time.Instant;
-
-public class CourseDAOImpl extends MongoModelDAO<Curso> {
+/**
+ *
+ * @author Ricardo
+ */
+public class CourseDAOImpl implements ICursoDAO {
+    private final MongoCollection<Curso> collection;
 
     public CourseDAOImpl() {
-        super(
-            MongoClientProvider
-                .getDatabase()
-                .getCollection("courses", Course.class),
-            Course.class
-        );
+        this.collection = MongoClientProvider.getInstance()
+                .getCollection("courses", Curso.class);
     }
 
     @Override
-    protected ObjectId getId(Course entity) {
-        return entity.getId();
+    public void create(Curso entity) {
+        try {
+            if (entity.getId() == null) {
+                entity.setId(new ObjectId());
+            }
+            Date now = new Date();
+            entity.setCreatedAt(now);
+            entity.setUpdatedAt(now);
+            
+            collection.insertOne(entity);
+        } catch (Exception e) {
+            throw new DaoException("Error al crear el curso: " + e.getMessage());
+        }
     }
 
     @Override
-    protected void setId(Course entity, ObjectId id) {
-        entity.setId(id);
+    public Curso findById(ObjectId id) {
+        Curso curso = collection.find(eq("_id", id)).first();
+        if (curso == null) {
+            throw new EntityNotFoundException("Curso no encontrado con ID: " + id);
+        }
+        return curso;
     }
 
     @Override
-    protected void setCreatedAt(Course entity, Instant now) {
-        entity.setCreatedAt(now);
+    public List<Curso> findAll() {
+        return collection.find().into(new ArrayList<>());
     }
 
     @Override
-    protected void setUpdatedAt(Course entity, Instant now) {
-        entity.setUpdatedAt(now);
+    public void update(Curso entity) {
+        try {
+            entity.setUpdatedAt(new Date());
+            collection.replaceOne(eq("_id", entity.getId()), entity);
+        } catch (Exception e) {
+            throw new DaoException("Error al actualizar el curso: " + e.getMessage());
+        }
     }
 
     @Override
-    protected String getNombre(Course entity) {
-        return entity.getNombre();
+    public void deleteById(ObjectId id) {
+        collection.deleteOne(eq("_id", id));
+    }
+
+    @Override
+    public void deleteAll() {
+        collection.drop(); 
+    }
+
+    @Override
+    public Curso findByNombre(String nombre) {
+        return collection.find(eq("title", nombre)).first();
     }
 }
