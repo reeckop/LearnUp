@@ -1,6 +1,6 @@
 package exception;
 
-/**
+/** 
  *
  * @author Ricardo
  */

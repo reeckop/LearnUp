@@ -22,24 +22,60 @@ public class Instructor {
 
     public Instructor() {}
 
-    public ObjectId getId() { return id; }
-    public void setId(ObjectId id) { this.id = id; }
+    public ObjectId getId() {
+        return id;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public String getEspecialidad() { return especialidad; }
-    public void setEspecialidad(String especialidad) { this.especialidad = especialidad; }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-    public List<ObjectId> getCursosIds() { return cursosIds; }
-    public void setCursosIds(List<ObjectId> cursosIds) { this.cursosIds = cursosIds; }
+    public String getEmail() {
+        return email;
+    }
 
-    public Instant getCreadoEn() { return creadoEn; }
-    public void setCreadoEn(Instant creadoEn) { this.creadoEn = creadoEn; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public Instant getActualizadoEn() { return actualizadoEn; }
-    public void setActualizadoEn(Instant actualizadoEn) { this.actualizadoEn = actualizadoEn; }
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public List<ObjectId> getCursosIds() {
+        return cursosIds;
+    }
+
+    public void setCursosIds(List<ObjectId> cursosIds) {
+        this.cursosIds = cursosIds;
+    }
+
+    public Instant getCreadoEn() {
+        return creadoEn;
+    }
+
+    public void setCreadoEn(Instant creadoEn) {
+        this.creadoEn = creadoEn;
+    }
+
+    public Instant getActualizadoEn() {
+        return actualizadoEn;
+    }
+
+    public void setActualizadoEn(Instant actualizadoEn) {
+        this.actualizadoEn = actualizadoEn;
+    }
+
 }

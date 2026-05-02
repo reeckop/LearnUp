@@ -21,21 +21,52 @@ public class Estudiante {
 
     public Estudiante() {}
 
-    public ObjectId getId() { return id; }
-    public void setId(ObjectId id) { this.id = id; }
+    public ObjectId getId() {
+        return id;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public List<ObjectId> getCursosInscritosIds() { return cursosInscritosIds; }
-    public void setCursosInscritosIds(List<ObjectId> cursosInscritosIds) { this.cursosInscritosIds = cursosInscritosIds; }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-    public Instant getCreadoEn() { return creadoEn; }
-    public void setCreadoEn(Instant creadoEn) { this.creadoEn = creadoEn; }
+    public String getEmail() {
+        return email;
+    }
 
-    public Instant getActualizadoEn() { return actualizadoEn; }
-    public void setActualizadoEn(Instant actualizadoEn) { this.actualizadoEn = actualizadoEn; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<ObjectId> getCursosInscritosIds() {
+        return cursosInscritosIds;
+    }
+
+    public void setCursosInscritosIds(List<ObjectId> cursosInscritosIds) {
+        this.cursosInscritosIds = cursosInscritosIds;
+    }
+
+    public Instant getCreadoEn() {
+        return creadoEn;
+    }
+
+    public void setCreadoEn(Instant creadoEn) {
+        this.creadoEn = creadoEn;
+    }
+
+    public Instant getActualizadoEn() {
+        return actualizadoEn;
+    }
+
+    public void setActualizadoEn(Instant actualizadoEn) {
+        this.actualizadoEn = actualizadoEn;
+    }
+
 }

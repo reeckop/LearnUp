@@ -1,0 +1,15 @@
+config\MongoConfig.class
+model\Recurso.class
+app\Main.class
+exception\DaoException.class
+dao\IEstudianteDAO.class
+model\Resena.class
+model\Modulo.class
+dao\IModeloDAO.class
+model\Estudiante.class
+model\Curso.class
+model\Instructor.class
+exception\EntityNotFoundException.class
+config\MongoClientProvider.class
+dao\imp\CourseDAOImpl.class
+dao\ICursoDAO.class

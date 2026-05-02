@@ -1,49 +1,77 @@
 package model;
 
 import org.bson.types.ObjectId;
-import java.time.Instant;
-import java.util.List;
+import java.util.Date;
 
 /**
  *
  * @author Ricardo
  */
 public class Curso {
-
     private ObjectId id;
-    private String nombre;
-    private String descripcion;
-    private ObjectId instructorId;
+    private String title;
+    private String description;
+    private String category;
+    private Double price;
+    private Date createdAt;
+    private Date updatedAt;
 
-    private List<Modulo> modulos;
-    private List<Resena> resenas;
+    public Curso() {
+    }
 
-    private Instant creadoEn;
-    private Instant actualizadoEn;
+    public ObjectId getId() {
+        return id;
+    }
 
-    public Curso() {}
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
 
-    public ObjectId getId() { return id; }
-    public void setId(ObjectId id) { this.id = id; }
+    public String getTitle() {
+        return title;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public String getDescription() {
+        return description;
+    }
 
-    public ObjectId getInstructorId() { return instructorId; }
-    public void setInstructorId(ObjectId instructorId) { this.instructorId = instructorId; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public List<Modulo> getModulos() { return modulos; }
-    public void setModulos(List<Modulo> modulos) { this.modulos = modulos; }
+    public String getCategory() {
+        return category;
+    }
 
-    public List<Resena> getResenas() { return resenas; }
-    public void setResenas(List<Resena> resenas) { this.resenas = resenas; }
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
-    public Instant getCreadoEn() { return creadoEn; }
-    public void setCreadoEn(Instant creadoEn) { this.creadoEn = creadoEn; }
+    public Double getPrice() {
+        return price;
+    }
 
-    public Instant getActualizadoEn() { return actualizadoEn; }
-    public void setActualizadoEn(Instant actualizadoEn) { this.actualizadoEn = actualizadoEn; }
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    } 
 }
